@@ -11,7 +11,7 @@ env = lambda e, d: os.environ[e] if os.has_key(e) else d
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
