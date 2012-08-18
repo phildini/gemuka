@@ -11,7 +11,7 @@ env = lambda e, d: os.environ[e] if os.has_key(e) else d
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -85,8 +85,6 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_PATH, 'static'),
-    os.path.join(PROJECT_PATH, 'admin/static')
 )
 
 ADMIN_MEDIA_PREFIX = STATIC_ROOT + '/admin/'
@@ -100,7 +98,10 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 't)_l6ym61-@32yl=*qqc54@29lc6!u69&amp;-+op5+jm$6_w6f!th'
+if os.environ.has_key('DJANGO_SECRET_KEY'):
+    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+else:
+    SECRET_KEY = 't)_l6ym61-@32yl=*qqc54@29lc6!u69&amp;-+op5+jm$6_w6f!th'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
