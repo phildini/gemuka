@@ -156,7 +156,20 @@ INSTALLED_APPS = (
     'gemuka.accounts',
 )
 
-BROKER_BACKEND = 'django'
+# Email Settings.
+if os.environ.has_key('DJANGO_EMAIL_HOST'):
+    EMAIL_HOST = os.environ['DJANGO_EMAIL_HOST']
+else:
+    EMAIL_HOST = 'smtp.mail.mail'
+EMAIL_PORT = 587
+if os.environ.has_key('DJANGO_EMAIL_USER'):
+    EMAIL_HOST_USER = os.environ['DJANGO_EMAIL_USER']
+    EMAIL_HOST_PASSWORD = os.environ['DJANGO_EMAIL_PASSWORD']
+else:
+    EMAIL_HOST_USER = 'user@mail.mail'
+    EMAIL_HOST_PASSWORD = 'password'
+EMAIL_USE_TLS = True
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
